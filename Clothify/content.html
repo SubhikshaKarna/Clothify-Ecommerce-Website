@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clothify</title>
+    <style>
+       
+        #imageSection {
+            text-align: center;
+            padding-top: 1cm;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        #imageSection h2 {
+            font-family: 'Arial', sans-serif;
+            font-size: 24px;
+            width: 100%;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        #menImage,
+        #womenImage {
+            flex: 1;
+            margin: 10px;
+            position: relative;
+        }
+
+        #menImage img,
+        #womenImage img {
+            width: 100%;
+            max-width: 500px;
+            height: auto;
+        }
+
+        #menImage p,
+        #womenImage p {
+            font-family: 'Arial', sans-serif;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        #buttonContainer {
+            text-align: center;
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 10px 20px;
+            margin: 0 300px;
+            font-family: 'Arial', sans-serif;
+            font-size: 16px;
+            background-color: #0f0f10;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <section id="imageSection">
+        <h2>Our Collection</h2> 
+        <div id="menImage">
+            <img src="img/men.jpeg" alt="Men's clothing">
+            <p>Explore our collection of stylish men's clothing.</p>
+        </div>
+        <div id="womenImage">
+            <img src="img/women.jpeg" alt="Women's clothing">
+            <p>Discover our wide range of trendy women's clothing.</p>
+        </div>
+    </section>
+   
+    <section id="imageSection">
+        <div id="menImage">
+            <img src="img/m.jpeg" alt="Men's clothing">
+        </div>
+        <div id="womenImage">
+            <img src="img/w.jpeg" alt="Women's clothing">
+        </div>
+    </section>
+   
+    <div id="buttonContainer">
+        <a href="men.html" class="button">Men's</a>
+        <a href="women.html" class="button">Women's</a>
+    </div>
+    <br>
+    <br>
+    <br>
+</body>
+</html>

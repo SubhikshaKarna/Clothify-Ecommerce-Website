@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Clothify</title>
+    <link href="https://fonts.googleapis.com/css?family=Lato&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        /* Your CSS styles here */
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            background-color: #1E1E1E; /* Dark background color */
+            color: #FFFFFF; /* Light text color */
+        }
+
+        #header {
+            background-color: #333; /* Darker background color */
+            padding: 10px;
+            text-align: right;
+        }
+
+        #header a {
+            text-decoration: none;
+            color: #FFFFFF; /* Light text color */
+            margin-right: 20px;
+            font-size: 20px;
+        }
+
+        .product-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            border-radius: 50px;
+            background-color: #333; /* Darker background color */
+        }
+
+        .product-group {
+            margin-bottom: 20px;
+        }
+
+        .product-group h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #FFFFFF; /* Light text color */
+        }
+
+        .products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .product {
+            width: calc(22% - 5px); /* Adjust width as needed */
+            background-color: #333; /* Darker background color */
+            border-radius: 10px;
+            box-shadow: 1px 2px 6px 2px rgb(219, 219, 219);
+            margin-bottom: 10px; /* Adjust margin as needed */
+            padding: 10px;
+            height: 520px;
+        }
+
+        .product img {
+            width: 100%;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+            margin-bottom: 5px;
+        }
+
+        .product h2 {
+            font-size: 16px;
+            margin-bottom: 5px;
+            color: #FFFFFF; /* Light text color */
+        }
+
+        .product h3 {
+            font-weight: bold;
+            color: #FFFFFF; /* Light text color */
+        }
+
+        .product p {
+            margin: 0;
+            font-size: 14px;
+            color: #FFFFFF; /* Light text color */
+        }
+
+        .product button {
+            display: block;
+            margin: 10px auto;
+            padding: 6px 12px;
+            background-color: rgb(251, 251, 242); /* Dark button color */
+            color: #060505; /* Light text color */
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        p {
+            text-align: center;
+            margin-top: 20px;
+            font-weight: bold;
+            font-size: xx-large;
+        }
+
+        @media (max-width: 768px) {
+            .product {
+                width: calc(50% - 10px); /* Adjust width as needed for smaller screens */
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <a href="cart.html"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Go to Cart</a>
+    </div>
+    <h1 style="text-align: center; color: #FFFFFF;">Women's Collection</h1>
+    <div class="product-container">
+        <div class="product-group">
+            <h2>Shirts</h2>
+            <div class="products">
+                <!-- Product 1 -->
+                <div class="product">
+                    <img src="women/shirt1.jpeg" alt="Shirt 1">
+                    <h2>Light Blue Shirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1599</p>
+                    <button onclick="addToCart('Light Blue Shirt', 1599, 'women/shirt1.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 2 -->
+                <div class="product">
+                    <img src="women/shirt2.jpeg" alt="Shirt 2">
+                    <h2>White Shirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1599</p>
+                    <button onclick="addToCart('White Shirt', 1599, 'women/shirt2.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 3 -->
+                <div class="product">
+                    <img src="women/shirt3.jpeg" alt="Shirt 3">
+                    <h2>Cream Shirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1599</p>
+                    <button onclick="addToCart('Cream Shirt', 1599, 'women/shirt3.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 4 -->
+                <div class="product">
+                    <img src="women/shirt4.jpeg" alt="Shirt 4">
+                    <h2>Pink Shirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1599</p>
+                    <button onclick="addToCart('Pink Shirt', 1599, 'women/shirt4.jpeg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-group">
+            <h2>Sweatshirts</h2>
+            <div class="products">
+                <!-- Product 5 -->
+                <div class="product">
+                    <img src="women/sweatshirt1.jpeg" alt="Sweatshirt 1">
+                    <h2>Green Sweatshirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1999</p>
+                    <button onclick="addToCart('Green Sweatshirt', 1999, 'women/sweatshirt1.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 6 -->
+                <div class="product">
+                    <img src="women/sweatshirt2.jpeg" alt="Sweatshirt 2">
+                    <h2>Black Sweatshirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1999</p>
+                    <button onclick="addToCart('Black Sweatshirt', 1999, 'women/sweatshirt2.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 7 -->
+                <div class="product">
+                    <img src="women/sweatshirt3.jpeg" alt="Sweatshirt 3">
+                    <h2>Cream Sweatshirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1999</p>
+                    <button onclick="addToCart('Cream Sweatshirt', 1999, 'women/sweatshirt3.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 8 -->
+                <div class="product">
+                    <img src="women/sweatshirt4.jpeg" alt="Sweatshirt 4">
+                    <h2>White Sweatshirt</h2>
+                    <h3>Brand: H & M</h3>
+                    <p>Price: Rs 1999</p>
+                    <button onclick="addToCart('White Sweatshirt', 1999, 'women/sweatshirt4.jpeg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+        <div class="product-group">
+            <h2>Long Tops</h2>
+            <div class="products">
+                <!-- Product 9 -->
+                <div class="product">
+                    <img src="women/Long_Top1.jpeg" alt="Long Top 1">
+                    <h2>Cream coloured Long Top </h2>
+                    <h3>Brand: Trends</h3>
+                    <p>Price: Rs 999</p>
+                    <button onclick="addToCart('Cream coloured Long Top', 999, 'women/Long_Top1.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 10 -->
+                <div class="product">
+                    <img src="women/Long_Top2.jpeg" alt="Long Top 2">
+                    <h2>Green coloured Long Top</h2>
+                    <h3>Brand: Trends</h3>
+                    <p>Price: Rs 999</p>
+                    <button onclick="addToCart('Green coloured Long Top', 999, 'women/Long_Top2.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 11 -->
+                <div class="product">
+                    <img src="women/Long_Top3.jpeg" alt="Long Top 3">
+                    <h2>Cream coloured Long Top</h2>
+                    <h3>Brand: Trends</h3>
+                    <p>Price: Rs 999</p>
+                    <button onclick="addToCart('Cream coloured Long Top', 999, 'women/Long_Top3.jpeg')">Add to Cart</button>
+                </div>
+                <!-- Product 12 -->
+                <div class="product">
+                    <img src="women/Long_Top4.jpeg" alt="Long Top 4">
+                    <h2>Blue coloured Long Top</h2>
+                    <h3>Brand: Trends</h3>
+                    <p>Price: Rs 999</p>
+                    <button onclick="addToCart('Blue coloured Long Top', 999, 'women/Long_Top4.jpeg')">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function addToCart(itemName, price, imageSrc) {
+            var item = {
+                name: itemName,
+                price: price,
+                image: imageSrc,
+            };
+    
+            // Retrieve existing cart items from storage or create an empty array
+            var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            // Add the new item to the cart
+            cartItems.push(item);
+            // Store the updated cart back in storage
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+    
+            // Change button text to "Item Added to Cart"
+            event.target.innerText = 'Added to Cart';
+            event.target.disabled = true; // Disable the button after adding the item to the cart
+    
+            // Display toast message
+            var toast = document.createElement('div');
+            toast.classList.add('toast');
+            toast.textContent = 'One item added to cart';
+            document.body.appendChild(toast);
+    
+            // Hide the toast message after 3 seconds
+            setTimeout(function() {
+                toast.style.opacity = '0';
+                setTimeout(function() {
+                    document.body.removeChild(toast);
+                }, 1000);
+            }, 3000);
+        }
+    </script>
+</body>
+</html>

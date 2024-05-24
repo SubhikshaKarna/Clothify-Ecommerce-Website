@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clothify</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Lato', sans-serif;
+            text-align: center; 
+            background-color: #1E1E1E; /* Dark background color */
+            color: #FFFFFF; /* Light text color */
+        }
+
+        h1 {
+            color: #FFFFFF; /* Light text color */
+            margin-top: 20px; 
+        }
+
+        #cartItems {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center; 
+            margin-top: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            border: 1px solid #ccc;
+            padding: 20px; 
+            border-radius: 10px; 
+            background-color: #333; /* Darker background color */
+        }
+
+        .cart-item img {
+            width: 200px; 
+            height: 200px; 
+            object-fit: cover;
+            margin-bottom: 10px;
+            border-radius: 10px;
+        }
+
+        .cart-item h2 {
+            margin: 0;
+            font-size: 20px; 
+            color: #FFFFFF; /* Light text color */
+        }
+
+        .cart-item p {
+            margin: 5px 0;
+            font-size: 18px; 
+            color: #FFFFFF; /* Light text color */
+        }
+
+        .remove-item-btn {
+            padding: 10px 20px; 
+            background-color: black;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .remove-item-btn:hover {
+            background-color:white ;
+            color: black;
+        }
+
+        .buy-btn-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .buy-btn {
+            padding: 12px 24px; 
+            background-color: rgb(217, 236, 236);
+            color: rgb(16, 14, 14);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 0 10px; 
+        }
+
+        .buy-btn:hover {
+            background-color: rgb(164, 189, 189); 
+        }
+
+        .message {      
+            color: rgb(238, 228, 228);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        #orderContainer {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            margin-top: 20px;
+        }
+
+        #orderContainer #check {
+            color: #cce4cd;
+            font-size: 64px;
+        }
+
+        #orderContainer #aboutCheck {
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 0; 
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        body::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        body::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        body::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 5px;
+        }
+
+        body::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+
+        form {
+            margin-top: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 250px;
+        }
+
+        input[type="submit"] {
+            padding: 10px 20px;
+            background-color: rgb(210, 219, 219);
+            color: rgb(5, 4, 4);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        input[type="submit"]:hover {
+            background-color: rgb(80, 87, 87); 
+            color: #e2f3e2;
+        }
+    </style>
+</head>
+<body>
+    <h1>Shopping Cart</h1>
+    <div id="cartItems"></div>
+    <div>Total Items in Cart: <span id="totalItems"></span></div> <!-- Display total items here -->
+    <div>Total Amount: <span id="totalAmount"></span></div> <!-- Display total amount here -->
+  
+    <div class="buy-btn-container">
+        <button id="buyBtn" class="buy-btn" onclick="showDetails()">Buy Now</button>
+        <button id="addToCartBtn" class="buy-btn" onclick="addToCart()">Add to Cart</button>
+    </div>
+
+    <div id="orderContainer">
+        <div id="check"><i class="fas fa-check-circle"></i></div>
+        <div id="aboutCheck">
+            <h1>Order Placed Successfully!</h1>
+            <p>Happy Shopping!!</p>
+        </div>
+    </div>
+
+    <div id="detailsContainer" style="display: none;">
+        <h2>Enter Your Details</h2>
+        <form id="detailsForm" onsubmit="submitDetails(event)">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="text" id="address" placeholder="Your Address" required>
+            <input type="text" id="contact" placeholder="Your Contact" required>
+            <input type="submit" value="Proceed">
+        </form>
+    </div>
+
+    <script>
+        var orderPlaced = false; 
+
+        window.onload = function () {
+            var cartItemsContainer = document.getElementById('cartItems');
+            var totalItemsDisplay = document.getElementById('totalItems');
+            var totalAmountDisplay = document.getElementById('totalAmount'); // Get the display element
+            var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            var totalAmount = 0; // Initialize total amount to 0
+
+            cartItems.forEach(function (item) {
+                var cartItemElement = document.createElement('div');
+                cartItemElement.classList.add('cart-item');
+                cartItemElement.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}">
+                    <h2>${item.name}</h2>
+                    <p>Price: Rs ${item.price}</p>
+                    <button class="remove-item-btn" onclick="removeItem(this)">Remove</button>
+                `;
+                cartItemsContainer.appendChild(cartItemElement);
+                totalAmount += item.price; // Add item price to total amount
+            });
+
+            totalItemsDisplay.textContent = cartItems.length; // Update total items display
+            totalAmountDisplay.textContent = totalAmount; // Update total amount display
+
+            if (cartItems.length === 0) {
+                document.getElementById('buyBtn').style.display = 'none';
+                var emptyCartMessage = document.createElement('div');
+                emptyCartMessage.textContent = "Hey! it feels so Light!! \nThere is nothing in your bag, let's add some items";
+                emptyCartMessage.classList.add('message');
+                document.body.appendChild(emptyCartMessage);
+            } else {
+                document.getElementById('buyBtn').style.display = 'block';
+                document.getElementById('addToCartBtn').style.display = 'none';
+            }
+        };
+
+        function removeItem(btn) {
+            var itemContainer = btn.parentElement;
+            var itemName = itemContainer.querySelector('h2').innerText;
+            var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            var updatedCartItems = cartItems.filter(function (item) {
+                return item.name !== itemName;
+            });
+
+            localStorage.setItem('cart', JSON.stringify(updatedCartItems));
+
+            itemContainer.remove();
+
+            if (updatedCartItems.length === 0) {
+                document.getElementById('buyBtn').style.display = 'none';
+                document.getElementById('addToCartBtn').style.display = 'block';
+
+                var emptyCartMessage = document.createElement('div');
+                emptyCartMessage.textContent = "Hey! it feels so Light!! There is nothing in your bag, let's add some items";
+                emptyCartMessage.classList.add('message');
+                document.body.appendChild(emptyCartMessage);
+            }
+        }
+
+        function showDetails() {
+            document.getElementById('detailsContainer').style.display = 'block';
+        }
+
+        function submitDetails(event) {
+            event.preventDefault(); 
+
+            var name = document.getElementById('name').value;
+            var address = document.getElementById('address').value;
+            var contact = document.getElementById('contact').value;
+
+            console.log("Name: " + name);
+            console.log("Address: " + address);
+            console.log("Contact: " + contact);
+
+            buyNow();
+
+            document.getElementById('detailsContainer').style.display = 'none';
+        }
+
+        function buyNow() {
+            var cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+
+            if (cartItems.length === 0) {
+                alert('No items in the cart!');
+            } else {
+                clearCart();
+                if (!orderPlaced) {
+                    document.getElementById('orderContainer').style.display = 'flex';
+                    orderPlaced = true; 
+                    document.getElementById('buyBtn').style.display = 'none'; 
+                    loadFooter();
+                }
+            }
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            document.getElementById('cartItems').innerHTML = '';
+
+            var messageElement = document.createElement('div');
+            messageElement.textContent = "Thank you for Shopping at Clothify";
+            messageElement.classList.add('message');
+
+            document.body.appendChild(messageElement);
+
+            setTimeout(function() {
+                messageElement.remove();
+            }, 3000);
+        }
+
+        function addToCart() {
+            window.location.href = 'index.html';
+        }
+
+        function loadFooter() {
+            var xhr = new XMLHttpRequest();
+
+            xhr.onreadystatechange = function () {
+                if (this.readyState == 4 && this.status == 200) {
+                    var footerContainer = document.createElement('div');
+                    footerContainer.innerHTML = this.responseText;
+                    document.body.appendChild(footerContainer);
+
+                    document.querySelector('footer').style.height = '40px'; // Adjust as needed
+                }
+            };
+
+            xhr.open('GET', 'footer.html', true);
+            xhr.send();
+        }
+    </script>
+
+    <!-- Any external scripts or libraries -->
+</body>
+</html>
