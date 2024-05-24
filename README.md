@@ -3,4 +3,5 @@ The aim was to develop a user-friendly e-commerce platform, Clothify, with a cor
 
 Visual Tour of Clothify's Interface:
 
-![Home_page](https://github.com/SubhikshaKarna/Clothify-Ecommerce-Website/assets/149041362/d33c5503-dbcb-4caf-88dd-812d8ccd4e8c)
+![Home_Page](https://github.com/SubhikshaKarna/Clothify-Ecommerce-Website/assets/149041362/064349ab-0728-4934-a6c5-625a313a2326)
+
