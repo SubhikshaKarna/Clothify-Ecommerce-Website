@@ -13,3 +13,15 @@ Visual Tour of Clothify's Interface:
 
 ![final](https://github.com/SubhikshaKarna/Clothify-Ecommerce-Website/assets/149041362/8fc412ae-3427-4cb9-9a01-7cec5df7d4aa)
 
+## Used Technologies
+<!--tech stack icons-->
+<p>
+  <a href="https://skillicons.dev">
+    <img src="https://skillicons.dev/icons?i=css,github,html,js,vscode&perline=14" />
+    <img/>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/04/ChatGPT_logo.svg" width="47" height="47" 
+      style="height:47px;width:auto;border-radius:8rem;overflow: hidden"/>
+      
+    
+  </a>
+</p>
